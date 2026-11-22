@@ -1,8 +1,20 @@
-# Proteus 仿真项目
+# 51 单片机直流电机 PWM 调速
 
-每个项目有独立分支。进入分支可查看电路、工程文件和运行说明。
+AT89C51 通过 PWM 驱动直流电机，实现按键启停、正反转、占空比调节和编码器测速。
 
-- [STM32 智能风扇](https://github.com/jackZhaok/proteus/tree/stm32-smart-fan)
-- [STM32 智能循迹避障小车](https://github.com/jackZhaok/proteus/tree/stm32-tracking-car)
-- [51 单片机智能交通信号灯](https://github.com/jackZhaok/proteus/tree/traffic-light)
-- [51 单片机直流电机 PWM 调速](https://github.com/jackZhaok/proteus/tree/motor-pwm)
+![Proteus 电路原理图](cover.png)
+
+## 主要器件与接线
+主控 AT89C51，时钟 12 MHz。P1.0～P1.3 分别接启停、加速、减速、换向按键。P2.0 输出 PWM，P2.1 / P2.2 控制 L293D 方向，P3.2（INT0）接编码器 Q1。LCD1602 显示状态、方向、设定占空比和 RPM。
+
+## 功能说明
+初始处于停止状态，正向设定，占空比 50%。加减速每次改变 10 个百分点。换向时先关闭输出，等编码器脉冲静默至少 0.5 秒再切换方向。
+
+## 打开与使用
+用 Proteus 8.17 打开 Simulation/Motor_PWM.pdsprj，确认 AT89C51 加载 Motor_PWM/Delivery/Motor_PWM_Full.hex。启动后操作四个按键，观察 LCD、电机和 PWM 波形。Keil 工程入口为 Motor_PWM/Keil/Motor_PWM.uvproj。
+
+## 编译与验证范围
+原报告记录了 30%、50%、70% 占空比的正反转、换向等待和停止测试。随仓附报告和演示视频，本次整理未重新编译或动态复测。
+
+## 项目来源
+用户提供的课程设计工程。
