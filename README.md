@@ -1,8 +1,20 @@
-# Proteus 仿真项目
+# STM32 智能循迹避障小车
 
-每个项目有独立分支。进入分支可查看电路、工程文件和运行说明。
+使用四路红外输入和超声波测距，结合双轮差速与编码器反馈，实现循迹、偏差修正和近障避让。
 
-- [STM32 智能风扇](https://github.com/jackZhaok/proteus/tree/stm32-smart-fan)
-- [STM32 智能循迹避障小车](https://github.com/jackZhaok/proteus/tree/stm32-tracking-car)
-- [51 单片机智能交通信号灯](https://github.com/jackZhaok/proteus/tree/traffic-light)
-- [51 单片机直流电机 PWM 调速](https://github.com/jackZhaok/proteus/tree/motor-pwm)
+![Proteus 电路原理图](cover.png)
+
+## 主要器件与接线
+STM32F103C8、四路红外逻辑输入、HC-SR04、TB6612FNG、两台带编码器的直流电机及 LCD。超声波 ECHO 接 PA8。两轮各用 Q1 脉冲测速。
+
+## 功能说明
+正常运行时依据四路红外输入做差速纠偏，两路速度控制器依据编码器反馈调整 PWM。有效距离小于 20 cm 时切换至避障，之后低速回寻黑线。LCD 显示模式、距离、轮速、PWM 和红外状态。
+
+## 打开与使用
+用 Proteus 8.17 打开 SmartCar-C8.pdsprj，给 U1 的 Program File 选择 Keil4/Keil4Output/SmartCar.hex。原工程保存了本机绝对路径，下载后须重新选择 HEX。启动后可用 1001 观察直行、0011 观察纠偏，并用 HC-SR04 的 Range Value 设置 10 cm 观察近障状态。
+
+## 编译与验证范围
+Keil4/SmartCar-C8.uvproj 为源码工程。随附报告记录了直行、纠偏、近障差速和测距端点测试，本次整理未重新编译或动态复测。
+
+## 项目来源
+用户提供的课程设计工程。
