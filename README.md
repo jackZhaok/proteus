@@ -1,8 +1,20 @@
-# Proteus 仿真项目
+# 51 单片机智能交通信号灯
 
-每个项目有独立分支。进入分支可查看电路、工程文件和运行说明。
+AT89C51 控制双向红黄绿灯和数码管倒计时，含紧急全红与夜间黄灯闪烁模式。
 
-- [STM32 智能风扇](https://github.com/jackZhaok/proteus/tree/stm32-smart-fan)
-- [STM32 智能循迹避障小车](https://github.com/jackZhaok/proteus/tree/stm32-tracking-car)
-- [51 单片机智能交通信号灯](https://github.com/jackZhaok/proteus/tree/traffic-light)
-- [51 单片机直流电机 PWM 调速](https://github.com/jackZhaok/proteus/tree/motor-pwm)
+![Proteus 电路原理图](cover.png)
+
+## 主要器件与接线
+AT89C51 使用 11.0592 MHz 时钟。P0 输出数码管段码，P1.0～P1.3 控制位选，P2.1～P2.6 分别驱动东西、南北红黄绿灯组。P3.2（INT0）接紧急键，P3.3（INT1）接夜间键。
+
+## 功能说明
+东西和南北方向轮流放行。默认绿灯 30 秒、黄灯过渡 5 秒，数码管显示双方剩余时间。紧急模式双向全红，夜间模式闪烁黄灯并显示 00。
+
+## 打开与使用
+用 Proteus 8.17 打开 Proteus/main.pdsprj，确认 U1 加载同目录的 Traffic_light.hex。启动后检查完整换向周期及两个模式按键。Keil 入口为 Keil5/Traffic_light.uvproj，需要 C51 工具链。
+
+## 编译与验证范围
+保留原 C51 源码和 HEX。随附报告记录了夜间模式复按曾无法退出，本次整理未修改程序或动态复测。
+
+## 项目来源
+用户提供的课程设计工程。
