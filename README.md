@@ -1,8 +1,27 @@
-# Proteus 仿真项目
+# 51 单片机恒电位仪
 
-每个项目有独立分支。进入分支可查看电路、工程文件和运行说明。
+基于 AT89C51 的三电极恒电位仪仿真，支持手动设定、线性扫描、微电流采样、声光报警和串口输出。
 
-- [STM32 智能风扇](https://github.com/jackZhaok/proteus/tree/stm32-smart-fan)
-- [STM32 智能循迹避障小车](https://github.com/jackZhaok/proteus/tree/stm32-tracking-car)
-- [51 单片机智能交通信号灯](https://github.com/jackZhaok/proteus/tree/traffic-light)
-- [51 单片机直流电机 PWM 调速](https://github.com/jackZhaok/proteus/tree/motor-pwm)
+![Proteus 电路原理图](cover.png)
+
+## 主要器件与接线
+
+AT89C51 主控时钟为 11.0592 MHz。DAC0808 与运放产生设定电位，三电极闭环调节 WE−RE。ADC0804 采集跨阻电路输出，LCD 显示设定值、电流和运行状态，P3.1/TXD 输出串口数据。
+
+## 功能说明
+
+支持 0 至 −1000 mV 手动设定与线性扫描，步长 10 mV。电流幅值达到 80 µA 时触发声光报警。串口为 9600、8N1，每行输出设定电位（mV）和电流（µA）。
+
+## 打开与使用
+
+用 Proteus 8.17 打开 89C51恒电位仪-8.17-模型复测-保存副本.pdsprj。若固件路径无效，双击 U1，将 Program File 指向同目录的 potentiostat.hex。保持 R11 为 20 kΩ。上键向负方向调整，中键向 0 调整，下键启停扫描。
+
+## 编译与验证范围
+
+随包附 8051 汇编源码、HEX、仿真说明、串口原始记录和 CSV。原记录覆盖全部 101 个设定点，并记录了 20 kΩ 恒电位和 1 kΩ 负载报警测试。本次打开工程截取原理图，未重新编译或动态复测。外部 PC 串口接收尚待验证。
+
+## 项目来源
+
+用户提供的 89C51 恒电位仪工程包。
+
+[完整仿真说明与流程图](仿真说明与流程图.md)
