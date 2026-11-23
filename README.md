@@ -6,3 +6,4 @@
 - [STM32 智能循迹避障小车](https://github.com/jackZhaok/proteus/tree/stm32-tracking-car)
 - [51 单片机智能交通信号灯](https://github.com/jackZhaok/proteus/tree/traffic-light)
 - [51 单片机直流电机 PWM 调速](https://github.com/jackZhaok/proteus/tree/motor-pwm)
+- [51 单片机恒电位仪](https://github.com/jackZhaok/proteus/tree/89c51-potentiostat)
