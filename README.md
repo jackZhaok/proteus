@@ -1,9 +1,25 @@
-# Proteus 仿真项目
+# STM32 蒸发器闭环控制
 
-每个项目有独立分支。进入分支可查看电路、工程文件和运行说明。
+基于 STM32F103C6 的蒸发器闭环控制仿真，包含五路模拟量输入、OLED、串口和执行器模型。
 
-- [STM32 智能风扇](https://github.com/jackZhaok/proteus/tree/stm32-smart-fan)
-- [STM32 智能循迹避障小车](https://github.com/jackZhaok/proteus/tree/stm32-tracking-car)
-- [51 单片机智能交通信号灯](https://github.com/jackZhaok/proteus/tree/traffic-light)
-- [51 单片机直流电机 PWM 调速](https://github.com/jackZhaok/proteus/tree/motor-pwm)
-- [51 单片机恒电位仪](https://github.com/jackZhaok/proteus/tree/89c51-potentiostat)
+![Proteus 电路原理图](cover.png)
+
+## 主要器件与接线
+
+STM32F103C6 为主控。PA0～PA4 接五路电位器，模拟液位、加热室温度、分离室温度、浓度和蒸汽流量。电路使用 I²C OLED、串口虚拟终端、L298 与直流电机、PWM 舵机和红色 LED。
+
+## 功能说明
+
+工程提供可调模拟量输入和执行器模型，用于观察蒸发器闭环控制演示中的显示、串口输出和执行器响应。虚拟终端设为 115200、8N1。
+
+## 打开与使用
+
+使用 Proteus 8.17 打开 Evaporator-C6-ClosedLoop.pdsprj。U3 的 Program File 使用同目录的 evaporator_c6_loop.hex。启动后逐一调整五个电位器，观察 OLED、电机、舵机和串口虚拟终端。
+
+## 编译与验证范围
+
+原包包含仿真工程及预编译 HEX，未附固件源码。本次确认工程可在 Proteus 8.17 打开，核对了固件引用并校验 HEX，未动态复测闭环控制。
+
+## 项目来源
+
+用户提供的 Evaporator-C6-ClosedLoop 工程包。
